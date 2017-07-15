@@ -1,0 +1,27 @@
+body{
+	position: relative;
+}
+
+#section1 {padding-top: 59px; height: 500px; color: #fff; background-color: #1e88e5;}
+#section2 {padding-top: 50px; height: 500px; color: #fff; background-color: #009688;}
+#section3 {padding-top: 50px; height: 519px; color: #fff; background-color: #001256;}
+#section4 {padding-top: 50px; height: 500px; color: #fff; background-color: #778899;}
+
+.texto-contato{		
+	padding: 20px;
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #000;
+}
+
+.text-footer{
+	color: #fff;
+	margin-top: 20px;
+}
