@@ -1,9 +1,11 @@
-<?php	
-	//Buscar os dados referente ao usuario situado nesse id
-	$result_home = "SELECT * FROM home";
-	$resultado_home = mysqli_query($conn, $result_home);
-	$row_home = mysqli_fetch_assoc($resultado_home);
+<?php
+include_once('conexao/conexao.php');
+include_once('includes/funcoes.php');
 
+//Buscar os dados referente ao usuario situado nesse id
+$result_home = "SELECT * FROM home";
+$stmt_home = db_query($result_home);
+$row_home = db_fetch_assoc($stmt_home);
 ?>
 <div class="container theme-showcase" role="main">
 	<div class="page-header">

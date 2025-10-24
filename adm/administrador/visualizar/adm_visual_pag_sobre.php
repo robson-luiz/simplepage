@@ -1,8 +1,9 @@
-<?php	
-	//Buscar os dados referente ao usuario situado nesse id
-	$result_sobre = "SELECT * FROM sobre";
-	$resultado_sobre = mysqli_query($conn, $result_sobre);
-	$row_sobre = mysqli_fetch_assoc($resultado_sobre);
+<?php
+include_once('conexao/conexao.php');
+include_once('includes/funcoes.php');
+$result_sobre = "SELECT * FROM sobre";
+$stmt_sobre = db_query($result_sobre);
+$row_sobre = db_fetch_assoc($stmt_sobre);
 
 ?>
 <div class="container theme-showcase" role="main">
@@ -16,6 +17,19 @@
 			</a>
 		</div>
 	</div>
+
+    <div class="row" style="margin-bottom:20px;">
+	  <div class="col-md-12 text-center">
+			<?php 
+			if (!empty($row_sobre['imagem'])): 
+			$caminho_imagem_sobre = './uploads/sobre/' . $row_sobre['id'] . '/' . $row_sobre['imagem'];
+			?>
+		  <img src="<?php echo $caminho_imagem_sobre; ?>" alt="Imagem Sobre" style="max-width:200px; margin-bottom:10px; box-shadow:0 2px 8px #ccc;" />
+		<?php else: ?>
+		  <span style="color:#aaa;">Sem imagem</span>
+		<?php endif; ?>
+	  </div>
+    </div>
 	<dl class="dl-horizontal">
 		<dt>Titulo</dt>
 		<dd><?php echo $row_sobre['titulo']; ?></dd>

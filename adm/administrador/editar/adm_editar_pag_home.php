@@ -1,11 +1,12 @@
 <?php
-	if(!empty($_GET['id'])){
-		$id = $_GET['id'];
-		//Buscar os dados referente ao usuario situado nesse id
-		$result_home = "SELECT * FROM home WHERE id = '$id' LIMIT 1";
-		$resultado_home = mysqli_query($conn, $result_home);
-		$row_home = mysqli_fetch_assoc($resultado_home);
-	}
+include_once('includes/funcoes.php');
+if(!empty($_GET['id'])){
+	$id = $_GET['id'];
+	//Buscar os dados referente ao registro home situado nesse id
+	$result_home = "SELECT * FROM home WHERE id = ? LIMIT 1";
+	$stmt_home = db_query($result_home, [$id]);
+	$row_home = db_fetch_assoc($stmt_home);
+}
 ?>
 <div class="container theme-showcase" role="main">
   <div class="page-header">
@@ -17,24 +18,34 @@
           </a>
       </div>
   </div>
-  <form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_edita_pag_home.php" enctype="multipart/form-data">
+	<form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_edita_pag_home.php" enctype="multipart/form-data">
 
-	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Titulo</label>
-	    <div class="col-sm-10">
-	      <input type="text" name="titulo" class="form-control" id="inputEmail3" placeholder="Titulo"
-		   <?php
-		   		if(!empty($row_home['titulo'])){
-		   			echo "value='".$row_home['titulo']."'";
-		   		}
-		   		if(!empty($_SESSION['value_titulo'])){
-		   			echo "value='".$_SESSION['value_titulo']."'";
-		   			unset($_SESSION['value_titulo']);
-		   		}
-		   ?>
-	      />
-	    </div>
-	  </div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Titulo</label>
+				<div class="col-sm-10">
+					<input type="text" name="titulo" class="form-control" id="inputEmail3" placeholder="Titulo"
+					 <?php
+						if(!empty($row_home['titulo'])){
+								echo "value='".$row_home['titulo']."'";
+						}
+						if(!empty($_SESSION['value_titulo'])){
+								echo "value='".$_SESSION['value_titulo']."'";
+								unset($_SESSION['value_titulo']);
+						}
+					 ?>
+					/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Imagem</label>
+				<div class="col-sm-10">
+					<?php if (!empty($row_home['imagem'])){ ?>
+						<img src="<?php echo $row_home['imagem']; ?>" alt="Imagem atual" style="max-width:200px; margin-bottom:10px;" />
+					<?php } ?>
+					<input type="file" name="imagem" class="form-control" accept="image/*">
+				</div>
+			</div>
 
 	  <div class="form-group">
 	    <label class="col-sm-2 control-label">Conteudo</label>

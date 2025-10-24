@@ -1,7 +1,7 @@
 <?php
-
-    $result_usuarios = "SELECT * FROM usuarios ";
-    $resultado_usuarios = mysqli_query($conn, $result_usuarios);
+  include_once('./includes/funcoes.php');
+  $result_usuarios = "SELECT * FROM usuarios";
+  $stmt_usuarios = db_query($result_usuarios);
 ?>
 <div class="container theme-showcase" role="main">
   <div class="page-header">
@@ -17,38 +17,39 @@
         <table class="table">
           <thead>
             <tr>
+              <th class="text-center">Imagem</th>
               <th class="text-center">Inscrição</th>
               <th class="text-center">Nome</th>
               <th class="text-center">E-mail</th>
-              <th class="text-center">Situação</th>
-              <th class="text-center">Nivel de Acesso</th>
+              <th class="text-center">Status</th>
+              <th class="text-center">Nível</th>
               <th class="text-center">Inserido</th>
               <th class="text-center">Ação</th>
             </tr>
           </thead>
           <tbody>
-          <?php while ($row_usuarios = mysqli_fetch_assoc($resultado_usuarios)) {?>
+          <?php while ($row_usuarios = db_fetch_assoc($stmt_usuarios)) {?>
             <tr>
+                <td class="text-center">
+                    <?php
+                      $fs_path = './assets/imagens/usuarios/' . $row_usuarios['id'] . '/' . $row_usuarios['imagem'];
+                      if (!empty($row_usuarios['imagem']) && is_file($fs_path)) {
+                        echo '<img src="' . $fs_path . '" alt="Imagem" style="max-width:50px; max-height:50px; border-radius:50%;" />';
+                      } else {
+                        echo '<span style="color:#aaa;">-</span>';
+                      }
+                    ?>
+                </td>
               <td class="text-center"><?php echo $row_usuarios['id']; ?></td>
               <td class="text-center"><?php echo $row_usuarios['nome']; ?></td>
               <td class="text-center"><?php echo $row_usuarios['email']; ?></td>
               <td class="text-center">
-                <?php $situacao =  $row_usuarios['situacoe_id']; 
-                    $result_situacao = "SELECT * FROM situacoes WHERE id = '$situacao' LIMIT 1";
-                    $resultado_situacao = mysqli_query($conn, $result_situacao);
-                    $row_situacao = mysqli_fetch_assoc($resultado_situacao);
-                    echo $row_situacao['nome'];
-                ?>
+                <?php echo isset($row_usuarios['status']) ? ucfirst($row_usuarios['status']) : '-'; ?>
               </td>
               <td class="text-center">
-                <?php $nivel_acesso =  $row_usuarios['niveis_acesso_id']; 
-                    $result_nivel_acesso = "SELECT * FROM niveis_acessos WHERE id = '$nivel_acesso' LIMIT 1";
-                    $resultado_nivel_acesso = mysqli_query($conn, $result_nivel_acesso);
-                    $row_nivel_acesso = mysqli_fetch_assoc($resultado_nivel_acesso);
-                    echo $row_nivel_acesso['nome'];
-                ?>
+                <?php echo isset($row_usuarios['nivel']) ? ucfirst($row_usuarios['nivel']) : '-'; ?>
               </td>
-              <td class="text-center"><?php echo date('d/m/Y H:i:s',strtotime($row_usuarios['created'])); ?></td>
+              <td class="text-center"><?php echo date('d/m/Y H:i:s',strtotime($row_usuarios['created_at'])); ?></td>
               <td class="text-center">
                 <a href="administracao.php?link=5&id=<?php echo $row_usuarios['id']; ?>">
                     <button type="button" class="btn btn-xs btn-primary">Visualizar</button>

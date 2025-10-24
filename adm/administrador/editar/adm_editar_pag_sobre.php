@@ -1,10 +1,12 @@
 <?php
+	include_once('conexao/conexao.php');
+	include_once('includes/funcoes.php');
 	if(!empty($_GET['id'])){
 		$id = $_GET['id'];
-		//Buscar os dados referente ao usuario situado nesse id
-		$result_sobre = "SELECT * FROM sobre WHERE id = '$id' LIMIT 1";
-		$resultado_sobre = mysqli_query($conn, $result_sobre);
-		$row_sobre = mysqli_fetch_assoc($resultado_sobre);
+		//Buscar os dados referente ao registro sobre situado nesse id
+		$result_sobre = "SELECT * FROM sobre WHERE id = ? LIMIT 1";
+		$stmt_sobre = db_query($result_sobre, [$id]);
+		$row_sobre = db_fetch_assoc($stmt_sobre);
 	}
 ?>
 <div class="container theme-showcase" role="main">
@@ -18,6 +20,23 @@
       </div>
   </div>
   <form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_edita_pag_sobre.php" enctype="multipart/form-data">
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Imagem</label>
+			<div class="col-sm-10">
+				<div class="col-md-12 text-center">
+					<?php 
+					if (!empty($row_sobre['imagem'])): 
+					$caminho_imagem_sobre = './uploads/sobre/' . $row_sobre['id'] . '/' . $row_sobre['imagem'];
+					?>
+				<img src="<?php echo $caminho_imagem_sobre; ?>" alt="Imagem Sobre" style="max-width:200px; margin-bottom:10px; box-shadow:0 2px 8px #ccc;" />
+				<?php else: ?>
+				<span style="color:#aaa;">Sem imagem</span>
+				<?php endif; ?>
+				</div>
+				<input type="file" name="imagem" class="form-control" accept="image/*">
+			</div>
+		</div>
 
 	  <div class="form-group">
 	    <label class="col-sm-2 control-label">Titulo</label>

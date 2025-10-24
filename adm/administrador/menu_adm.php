@@ -16,7 +16,6 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuário<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="administracao.php?link=2">Listar Usuários</a></li>
-            <li><a href="administracao.php?link=#">Nivel de Acesso</a></li>
           </ul>
         </li>
         <li class="dropdown">

@@ -1,16 +1,15 @@
 <?php
-
+	//Conexão com o banco de dados PDO
 	$servidor = "localhost";
 	$usuario = "root";
-	$senha = "usbw";
+	$senha = "";
 	$dbname = "simplepage";
 
-	//Criar a conexão
-	$conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
-	if(!$conn){
-		die("Falha na conexao: " . mysqli_connect_error());
-	}else{
-		//echo "Conexao realizada com sucesso!";
+	try {
+		$conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8mb4", $usuario, $senha);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	} catch (PDOException $e) {
+		die("Falha na conexao: " . $e->getMessage());
 	}
 
 

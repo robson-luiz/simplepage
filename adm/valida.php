@@ -2,39 +2,36 @@
 	session_start();
 	include_once("conexao/conexao.php");
 	//Verifica se os campos possuem dados
+
 	if((isset($_POST['txt_usuario'])) && (isset($_POST['txt_senha']))){
-		$usuario = mysqli_real_escape_string($conn, $_POST['txt_usuario']); //Escapar de caracteres especiais, previnindo sql injection
-		$senha = mysqli_real_escape_string($conn, $_POST['txt_senha']);
-		$senha = md5($senha);
+		$usuario = trim($_POST['txt_usuario']);
+		$senha = $_POST['txt_senha'];
 
-		$result_usuario = "SELECT * FROM usuarios WHERE email = '$usuario' && senha = '$senha'";
-		$resultado_usuario = mysqli_query($conn, $result_usuario);
-		$resultado = mysqli_fetch_assoc($resultado_usuario);		
+		// Busca usuário pelo email
+		$sql = "SELECT * FROM usuarios WHERE email = ? LIMIT 1";
+		$stmt = $conn->prepare($sql);
+		$stmt->execute([$usuario]);
+		$resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		//Encontrando um usuario na tabela usuario com os mesmos dados digitados pelo usuario
-		if(isset($resultado)){
+		if($resultado && password_verify($senha, $resultado['senha'])){
 			$_SESSION['usuarioID'] = $resultado['id'];
 			$_SESSION['usuarioNome'] = $resultado['nome'];
-			$_SESSION['usuarioNiveisAcessoId'] = $resultado['niveis_acesso_id'];
+			$_SESSION['usuarioNivel'] = $resultado['nivel'];
 			$_SESSION['usuarioEmail'] = $resultado['email'];
-			if($_SESSION['usuarioNiveisAcessoId'] == 1){
+			if($resultado['nivel'] == 'admin'){
 				header("Location: administracao.php");
-			}elseif ($_SESSION['usuarioNiveisAcessoId'] == 2) {
+			}elseif ($resultado['nivel'] == 'editor') {
 				header("Location: colaborador.php");
-			}elseif($_SESSION['usuarioNiveisAcessoId'] == 3){
-				header("Location: cliente.php");
 			}else{
 				$_SESSION['loginErro'] = "Erro - Entre em contato com o administrador";
 				header("Location: index.php");
 			}
-
 		}else{
-			$_SESSION['loginErro'] = "Usuario ou senha invãlida";
+			$_SESSION['loginErro'] = "Usuario ou senha inválida";
 			header("Location: index.php");
 		}
-
 	}else{
-		$_SESSION['loginErro'] = "Usuario ou senha invãlida";
+		$_SESSION['loginErro'] = "Usuario ou senha inválida";
 		header("Location: index.php");
 	}
 
