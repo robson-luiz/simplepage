@@ -191,25 +191,38 @@ chmod -R 777 simplepage/adm/assets/imagens/
 #### Upload Folder Structure
 ```
 adm/assets/imagens/
-├── usuarios/
-│   ├── 1/
-│   ├── 2/
-│   └── ...
-└── temp/
+└── usuarios/
+    ├── 1/
+    │   └── foto.[ext]
+    ├── 2/
+    │   └── foto.[ext]
+    └── ...
+
+adm/uploads/
+├── home/
+│   └── [id]/
+│       └── foto.[ext]
+└── sobre/
+    └── [id]/
+        └── foto.[ext]
 ```
 
 ### Advanced Settings
 
 #### Upload Configuration
-In the `includes/funcoes.php` file, you can adjust:
-- Maximum file size
-- Allowed file types
-- Compression quality
+The system implements upload validation directly in processing files. Settings are defined inline in the files:
+- Allowed extensions: `['jpg', 'jpeg', 'png', 'gif', 'webp']`
+- Maximum size: Limited by PHP settings (`upload_max_filesize` and `post_max_size`)
+- Directory structure: Automatically created by ID
 
+**Real implementation example:**
 ```php
-// Upload configurations (example)
-define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
-define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'gif']);
+// Extension validation (used in processing files)
+$extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+$ext = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
+if (in_array($ext, $extensoes_permitidas)) {
+    // Process upload
+}
 ```
 
 ## 💻 Usage

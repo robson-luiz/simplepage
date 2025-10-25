@@ -191,25 +191,38 @@ chmod -R 777 simplepage/adm/assets/imagens/
 #### Estrutura de Pastas de Upload
 ```
 adm/assets/imagens/
-├── usuarios/
-│   ├── 1/
-│   ├── 2/
-│   └── ...
-└── temp/
+└── usuarios/
+    ├── 1/
+    │   └── foto.[ext]
+    ├── 2/
+    │   └── foto.[ext]
+    └── ...
+
+adm/uploads/
+├── home/
+│   └── [id]/
+│       └── foto.[ext]
+└── sobre/
+    └── [id]/
+        └── foto.[ext]
 ```
 
 ### Configurações Avançadas
 
 #### Configuração de Upload
-No arquivo `includes/funcoes.php`, você pode ajustar:
-- Tamanho máximo de arquivo
-- Tipos de arquivo permitidos
-- Qualidade de compressão
+O sistema implementa validação de upload diretamente nos arquivos de processamento. As configurações são definidas inline nos arquivos:
+- Extensões permitidas: `['jpg', 'jpeg', 'png', 'gif', 'webp']`
+- Tamanho máximo: Limitado pelas configurações do PHP (`upload_max_filesize` e `post_max_size`)
+- Estrutura de diretórios: Criada automaticamente por ID
 
+**Exemplo de implementação real:**
 ```php
-// Configurações de upload (exemplo)
-define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
-define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'gif']);
+// Validação de extensão (usado nos arquivos de processamento)
+$extensoes_permitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+$ext = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
+if (in_array($ext, $extensoes_permitidas)) {
+    // Processar upload
+}
 ```
 
 ## 💻 Uso
