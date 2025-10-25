@@ -31,11 +31,11 @@
 ### 📸 Screenshots
 
 #### 🌐 Public Website
-<img src="https://raw.githubusercontent.com/robson-luiz/simplepage/master/screenshots/site_simplepage.png" alt="Homepage SimplePage" width="800">
+<img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/site_simplepage.png?raw=true" alt="Homepage SimplePage" width="800">
 <em>Homepage with modern and responsive design</em>
 
 #### 🖥️ Admin Panel
-<img src="https://raw.githubusercontent.com/robson-luiz/simplepage/master/screenshots/adm_simplepage.png" alt="Dashboard SimplePage" width="800">
+<img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/adm_simplepage.png?raw=true" alt="Dashboard SimplePage" width="800">
 <em>Dashboard with modern design</em>
 
 ### History
