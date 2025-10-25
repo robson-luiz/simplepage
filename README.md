@@ -31,12 +31,12 @@ O **SimplePage** é um sistema de gestão de conteúdo (CMS) desenvolvido origin
 ### 📸 Screenshots
 
 #### 🌐 Site Público
-![Site](screenshots/screenshots/site_simplepage.png)
+![Site](screenshots/site_simplepage.png)
 <em>Página inicial com design moderno e responsivo</em>
 
 
 #### 🖥️ Painel Administrativo
-![Dashbaord](screenshots/screenshots/site_simplepage.png)
+![Dashbaord](screenshots/site_simplepage.png)
 <em>Dashboard com design moderno</em>
 
 ### Histórico

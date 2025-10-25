@@ -31,11 +31,11 @@
 ### 📸 Screenshots
 
 #### 🌐 Public Website
-![Website](screenshots/screenshots/site_simplepage.png)
+![Website](screenshots/site_simplepage.png)
 <em>Homepage with modern and responsive design</em>
 
 #### 🖥️ Admin Panel
-![Dashbaord](screenshots/screenshots/site_simplepage.png)
+![Dashbaord](screenshots/site_simplepage.png)
 <em>Dashboard with modern design</em>
 
 ### History
