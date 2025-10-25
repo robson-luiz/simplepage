@@ -33,6 +33,7 @@
 #### 🌐 Public Website
 <div align="center">
   <img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/site_simplepage.png?raw=true" alt="Homepage SimplePage" width="800">
+  <br>
   <em>Homepage with modern and responsive design</em>
 </div>
 
@@ -40,6 +41,7 @@
 <div align="center">
   <img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/adm_simplepage.png?raw=true" alt="Dashboard SimplePage" width="800">
   <em>Dashboard with modern design</em>
+  <br>
 </div>
 
 ### History
