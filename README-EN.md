@@ -31,18 +31,12 @@
 ### 📸 Screenshots
 
 #### 🌐 Public Website
-<div align="center">
-  <img src="screenshots/site_simplepage.png" alt="SimplePage Homepage" width="800">
-  <br>
-  <em>Homepage with modern and responsive design</em>
-</div>
+![Website](screenshots/screenshots/site_simplepage.png)
+<em>Homepage with modern and responsive design</em>
 
 #### 🖥️ Admin Panel
-<div align="center">
-  <img src="screenshots/admin_simplepage.png" alt="SimplePage Dashboard" width="800">
-  <br>
-  <em>Dashboard with modern design</em>
-</div>
+![Dashbaord](screenshots/screenshots/site_simplepage.png)
+<em>Dashboard with modern design</em>
 
 ### History
 - **2017**: Initial development of basic structure
