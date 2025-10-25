@@ -32,14 +32,14 @@
 
 #### 🌐 Public Website
 <div align="center">
-  <img src="https://raw.githubusercontent.com/robson-luiz/simplepage/master/screenshots/site_simplepage.png" alt="SimplePage Homepage" width="800">
+  <img src="screenshots/site_simplepage.png" alt="SimplePage Homepage" width="800">
   <br>
   <em>Homepage with modern and responsive design</em>
 </div>
 
 #### 🖥️ Admin Panel
 <div align="center">
-  <img src="https://raw.githubusercontent.com/robson-luiz/simplepage/master/screenshots/admin_simplepage.png" alt="SimplePage Dashboard" width="800">
+  <img src="screenshots/admin_simplepage.png" alt="SimplePage Dashboard" width="800">
   <br>
   <em>Dashboard with modern design</em>
 </div>
