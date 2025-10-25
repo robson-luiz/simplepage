@@ -21,6 +21,22 @@ if(!empty($_GET['id'])){
 	<form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_edita_pag_home.php" enctype="multipart/form-data">
 
 			<div class="form-group">
+				<label class="col-sm-2 control-label">Imagem</label>
+				<div class="col-sm-10">
+					<div class="col-md-12 text-center">
+						<?php 
+						if (!empty($row_home['imagem'])): 
+						$caminho_imagem_home = './uploads/home/' . $row_home['id'] . '/' . $row_home['imagem'];
+						?>
+					<img src="<?php echo $caminho_imagem_home; ?>" alt="Imagem Home" style="max-width:200px; margin-bottom:10px; box-shadow:0 2px 8px #ccc;" />
+					<?php else: ?>
+					<span style="color:#aaa;">Sem imagem</span>
+					<?php endif; ?>
+					</div>
+					<input type="file" name="imagem" class="form-control" accept="image/*">
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-2 control-label">Titulo</label>
 				<div class="col-sm-10">
 					<input type="text" name="titulo" class="form-control" id="inputEmail3" placeholder="Titulo"
@@ -34,16 +50,6 @@ if(!empty($_GET['id'])){
 						}
 					 ?>
 					/>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Imagem</label>
-				<div class="col-sm-10">
-					<?php if (!empty($row_home['imagem'])){ ?>
-						<img src="<?php echo $row_home['imagem']; ?>" alt="Imagem atual" style="max-width:200px; margin-bottom:10px;" />
-					<?php } ?>
-					<input type="file" name="imagem" class="form-control" accept="image/*">
 				</div>
 			</div>
 

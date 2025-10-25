@@ -16,34 +16,35 @@
           </a>
       </div>
   </div>
-  <form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_edita_usuario.php" enctype="multipart/form-data">
+  <form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_edita_usuario.php" enctype="multipart/form-data" id="formEditUsuario">
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Nome</label>
+	    <label class="col-sm-2 control-label">Nome <span class="text-danger">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="text" name="nome" class="form-control" id="inputEmail3" placeholder="Nome Completo" value="<?php echo $row_usuario['nome']; ?>">
+	      <input type="text" name="nome" class="form-control" id="inputNome" placeholder="Nome Completo" value="<?php echo htmlspecialchars($row_usuario['nome']); ?>" required>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">E-mail</label>
+	    <label class="col-sm-2 control-label">E-mail <span class="text-danger">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="email" name="email" class="form-control" id="inputPassword3" placeholder="E-mail" value="<?php echo $row_usuario['email']; ?>">
+	      <input type="email" name="email" class="form-control" id="inputEmail" placeholder="E-mail" value="<?php echo htmlspecialchars($row_usuario['email']); ?>" required>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Senha</label>
+	    <label class="col-sm-2 control-label">Nova Senha</label>
 	    <div class="col-sm-10">
-	      <input type="password" name="senha" class="form-control" id="inputEmail3" placeholder="Senha">
+	      <input type="password" name="senha" class="form-control" id="inputSenha" placeholder="Deixe em branco para manter a atual" minlength="6">
+	      <small class="text-muted">Deixe em branco para manter a senha atual. Mínimo de 6 caracteres se alterar.</small>
 	    </div>
 	  </div>
 	
 
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Status</label>
+			<label class="col-sm-2 control-label">Status <span class="text-danger">*</span></label>
 			<div class="col-sm-10">
-					<select class="form-control" name="status">
+					<select class="form-control" name="status" required>
 							<option value="ativo" <?php if($row_usuario['status'] == 'ativo') echo 'selected'; ?>>Ativo</option>
 							<option value="inativo" <?php if($row_usuario['status'] == 'inativo') echo 'selected'; ?>>Inativo</option>
 					</select>
@@ -51,9 +52,9 @@
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Nível de Acesso</label>
+			<label class="col-sm-2 control-label">Nível de Acesso <span class="text-danger">*</span></label>
 			<div class="col-sm-10">
-					<select class="form-control" name="nivel">
+					<select class="form-control" name="nivel" required>
 							<option value="admin" <?php if($row_usuario['nivel'] == 'admin') echo 'selected'; ?>>Administrador</option>
 							<option value="editor" <?php if($row_usuario['nivel'] == 'editor') echo 'selected'; ?>>Editor</option>
 					</select>
@@ -81,4 +82,6 @@
 	    </div>
 	  </div>
 	</form>
+	
+	<p class="text-muted mt-3"><span class="text-danger">*</span> Campos obrigatórios</p>
 </div>

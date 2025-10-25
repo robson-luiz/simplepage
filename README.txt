@@ -23,6 +23,8 @@ Refatorar o projeto mantendo a estrutura simples, modernizar o visual (admin e s
    - Garantir simplicidade e funcionamento.
 7. **Documentar o projeto**
    - Após refatoração, criar documentação bilingue (PT/EN) para o GitHub.
+8. Colocar o arquivo Git ignore para remover o README.txt do Github
+   - Depois fazer a documentação oficial para colocar no Github.   
 
 ---
 
@@ -75,6 +77,47 @@ Finalizar documentação técnica e de uso para facilitar manutenção e onboard
 
 Testes:
 Realizar testes funcionais e de usabilidade em todas as áreas do sistema.
+-----------------------------------------------------------------------------------------------
+#### Novas Funcionalidades (Futuras)
+- **Sistema de backup automático** - Backup periódico do banco de dados
+- **Multi-idiomas** - Suporte a múltiplos idiomas no site público
+- **Sistema de cache** - Implementação de cache para melhor performance
+- **API REST** - Endpoints para integração com outros sistemas
+- **Sistema de logs avançado** - Auditoria completa de ações do sistema
+
+#### Otimizações Técnicas (Futuras)
+- **Lazy loading** de imagens
+- **Compressão automática** de assets CSS/JS
+- **Progressive Web App (PWA)** - Transformar em PWA
+- **Testes automatizados** - Implementação de PHPUnit
+- **Docker** - Containerização para deploy facilitado
+
+#### Segurança Avançada (Futuras)
+- **Two-factor authentication (2FA)** - Autenticação em duas etapas
+- **Rate limiting** - Proteção contra ataques de força bruta
+- **Criptografia de dados sensíveis** - Criptografia adicional de informações
+- **Auditoria de segurança** - Logs detalhados de segurança
+
+- **Dark mode** - Tema escuro para melhor experiência do usuário
+- **Gráficos interativos** - Implementação de charts no dashboard
+- **Sistema de notificações** - Notificações em tempo real para administradores
+
+#### Sistema de Conteúdo Avançado
+- **Editor visual aprimorado** - Upgrade do TinyMCE com mais recursos
+- **Galeria de imagens** - Sistema completo de gerenciamento de mídia
+- **Múltiplos idiomas** - Suporte a internacionalização (i18n)
+
+#### Melhorias de Performance
+- **Cache inteligente** - Sistema de cache para melhor performance
+- **Otimização de imagens** - Compressão automática e formatos modernos
+- **CDN integration** - Suporte para redes de distribuição de conteúdo
+
+#### Funcionalidades Avançadas
+- **API REST** - Endpoints para integração com outras aplicações
+- **Backup automático** - Sistema de backup do banco de dados
+- **Logs avançados** - Sistema completo de auditoria e monitoramento
+
+> **Nota**: Estas funcionalidades são ideias para futuras implementações. O projeto mantém sua simplicidade e foco nas funcionalidades essenciais de um CMS básico.
 
 ## Contato
 Dúvidas ou sugestões: robson-luiz (GitHub)

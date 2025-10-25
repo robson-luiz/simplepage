@@ -93,10 +93,55 @@
             .main-content {
                 margin-left: 0;
             }
+            .sidebar-toggle {
+                display: block;
+            }
+            .dashboard-header {
+                padding: 1rem;
+            }
+            .content-area {
+                padding: 1rem;
+            }
+        }
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1001;
+            background: #1e88e5;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        @media (max-width: 768px) {
+            .overlay.active {
+                display: block;
+            }
         }
     </style>
 </head>
   <body>
+    <!-- Mobile Menu Toggle -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Overlay for mobile -->
+    <div class="overlay" onclick="closeSidebar()"></div>
+    
     <!-- Sidebar -->
     <nav id="sidebar" class="sidebar">
         <div class="sidebar-header">
@@ -105,8 +150,10 @@
         <ul class="sidebar-menu">
             <li><a href="administracao.php" class="<?php echo empty($_GET['link']) ? 'active' : ''; ?>"><i class="fas fa-home me-2"></i>Dashboard</a></li>
             <li><a href="administracao.php?link=2"><i class="fas fa-users me-2"></i>Usuários</a></li>
-            <li><a href="administracao.php?link=14"><i class="fas fa-home me-2"></i>Página Home</a></li>
-            <li><a href="administracao.php?link=16"><i class="fas fa-info-circle me-2"></i>Página Sobre</a></li>
+            <li><a href="administracao.php?link=14"><i class="fas fa-home me-2"></i>Home</a></li>
+            <li><a href="administracao.php?link=16"><i class="fas fa-info-circle me-2"></i>Sobre</a></li>
+            <li><a href="administracao.php?link=18"><i class="fas fa-cogs me-2"></i>Serviços</a></li>
+            <li><a href="administracao.php?link=22"><i class="fas fa-envelope me-2"></i>Contatos</a></li>
             <li><a href="sair.php"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
         </ul>
     </nav>
@@ -135,6 +182,13 @@
             $pag[15] = "administrador/editar/adm_editar_pag_home.php";
             $pag[16] = "administrador/visualizar/adm_visual_pag_sobre.php";
             $pag[17] = "administrador/editar/adm_editar_pag_sobre.php";
+            $pag[18] = "administrador/listar/adm_listar_servico.php";
+            $pag[19] = "administrador/cadastro/adm_cad_servico.php";
+            $pag[20] = "administrador/editar/adm_editar_servico.php";
+            $pag[21] = "administrador/visualizar/adm_visual_servico.php";
+            $pag[22] = "administrador/listar/adm_listar_contato.php";
+            $pag[23] = "administrador/visualizar/adm_visual_contato.php";
+            $pag[24] = "administrador/editar/adm_editar_contato.php";
 
               if(!empty($_GET["link"])){
                 $link = $_GET["link"];
@@ -152,5 +206,40 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        // Função para toggle do sidebar mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.overlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+        
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.overlay');
+            
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+        
+        // Fechar sidebar ao clicar em um link (mobile)
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    closeSidebar();
+                }
+            });
+        });
+        
+        // Fechar sidebar ao redimensionar para desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeSidebar();
+            }
+        });
+    </script>
   </body>
 </html>

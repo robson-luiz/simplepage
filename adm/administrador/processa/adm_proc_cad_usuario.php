@@ -1,13 +1,61 @@
 <?php
 	include_once("../../conexao/conexao.php");
 	include_once("../../includes/funcoes.php");
-	$nome = $_POST['nome'];
-	$email = $_POST['email'];
-
-	$senha = $_POST['senha'];
-	$status = $_POST['status'];
-	$nivel = $_POST['nivel'];
-
+	
+	// Validação dos campos obrigatórios
+	$erros = [];
+	
+	$nome = isset($_POST['nome']) ? trim($_POST['nome']) : '';
+	$email = isset($_POST['email']) ? trim($_POST['email']) : '';
+	$senha = isset($_POST['senha']) ? $_POST['senha'] : '';
+	$status = isset($_POST['status']) ? $_POST['status'] : '';
+	$nivel = isset($_POST['nivel']) ? $_POST['nivel'] : '';
+	
+	// Validar nome
+	if (empty($nome) || strlen($nome) < 2) {
+		$erros[] = "Nome é obrigatório e deve ter pelo menos 2 caracteres.";
+	}
+	
+	// Validar email
+	if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		$erros[] = "E-mail é obrigatório e deve ter um formato válido.";
+	}
+	
+	// Verificar se email já existe
+	if (!empty($email)) {
+		$check_email = "SELECT id FROM usuarios WHERE email = ?";
+		$stmt_check = db_query($check_email, [$email]);
+		if (db_fetch_assoc($stmt_check)) {
+			$erros[] = "Este e-mail já está cadastrado no sistema.";
+		}
+	}
+	
+	// Validar senha
+	if (empty($senha) || strlen($senha) < 6) {
+		$erros[] = "Senha é obrigatória e deve ter pelo menos 6 caracteres.";
+	}
+	
+	// Validar status
+	if (empty($status) || !in_array($status, ['ativo', 'inativo'])) {
+		$erros[] = "Status é obrigatório e deve ser válido.";
+	}
+	
+	// Validar nível
+	if (empty($nivel) || !in_array($nivel, ['admin', 'editor'])) {
+		$erros[] = "Nível de acesso é obrigatório e deve ser válido.";
+	}
+	
+	// Se há erros, redirecionar com mensagem
+	if (!empty($erros)) {
+		$mensagem_erro = implode("\\n", $erros);
+		echo "
+			<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost/simplepage/adm/administracao.php?link=3'>
+			<script type=\"text/javascript\">
+				alert(\"Erro(s) no cadastro:\\n\\n$mensagem_erro\");
+			</script>
+		";
+		exit;
+	}
 
 	$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 	$sql = "INSERT INTO usuarios (nome, email, senha, status, nivel, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
@@ -43,14 +91,14 @@
 <body><?php
 	if(db_affected_rows($stmt) != 0){
 		echo "
-			<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=../../../administracao.php?link=2'>
+			<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost/simplepage/adm/administracao.php?link=2'>
 			<script type=\"text/javascript\">
 				alert(\"Usuário cadastrado com sucesso.\");
 			</script>
 			";
 		}else{
 			echo "
-			<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=../../../administracao.php?link=2'>
+			<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=http://localhost/simplepage/adm/administracao.php?link=2'>
 			<script type=\"text/javascript\">
 				alert(\"O Usuário não foi cadastrado com sucesso.\");
 			</script>

@@ -1,6 +1,35 @@
 <?php
   include_once('adm/conexao/conexao.php');
   include_once('includes/funcoes.php');
+  
+  // Verifica se há mensagens de feedback
+  $mensagem_sucesso = '';
+  $mensagem_erro = '';
+  
+  if (isset($_GET['sucesso'])) {
+      switch ($_GET['sucesso']) {
+          case 'contato_enviado':
+              $mensagem_sucesso = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
+              break;
+      }
+  }
+  
+  if (isset($_GET['erro'])) {
+      switch ($_GET['erro']) {
+          case 'campos_obrigatorios':
+              $mensagem_erro = 'Por favor, preencha todos os campos obrigatórios.';
+              break;
+          case 'email_invalido':
+              $mensagem_erro = 'Por favor, insira um e-mail válido.';
+              break;
+          case 'erro_interno':
+              $mensagem_erro = 'Ocorreu um erro interno. Tente novamente mais tarde.';
+              break;
+          case 'validacao':
+              $mensagem_erro = isset($_GET['msg']) ? urldecode($_GET['msg']) : 'Erro de validação.';
+              break;
+      }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -13,93 +42,7 @@
     <!-- Font Awesome via CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS customizado -->
-    <style>
-      :root {
-          --primary-color: #1e88e5;
-          --secondary-color: #009688;
-          --dark-blue: #001256;
-          --gray-blue: #778899;
-      }
-      body {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          scroll-behavior: smooth;
-      }
-      .navbar {
-          background: linear-gradient(135deg, var(--primary-color), #1565c0);
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-          transition: all 0.3s ease;
-      }
-      .navbar-brand {
-          font-weight: bold;
-          font-size: 1.5rem;
-          color: white !important;
-      }
-      .nav-link {
-          color: rgba(255,255,255,0.9) !important;
-          font-weight: 500;
-          margin: 0 10px;
-          transition: all 0.3s ease;
-          position: relative;
-      }
-      .nav-link:hover {
-          color: white !important;
-          transform: translateY(-2px);
-      }
-      .section {
-          min-height: 100vh;
-          padding: 80px 0;
-          display: flex;
-          align-items: center;
-      }
-      .section-title {
-          font-size: 2.5rem;
-          font-weight: bold;
-          margin-bottom: 2rem;
-          position: relative;
-          display: inline-block;
-      }
-      .section-title::after {
-          content: '';
-          position: absolute;
-          bottom: -10px;
-          left: 0;
-          width: 60px;
-          height: 4px;
-          background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-          border-radius: 2px;
-      }
-      #home {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          color: white;
-      }
-      .fade-in {
-          animation: fadeInUp 1s ease-out;
-      }
-      @keyframes fadeInUp {
-          from {
-              opacity: 0;
-              transform: translateY(30px);
-          }
-          to {
-              opacity: 1;
-              transform: translateY(0);
-          }
-      }
-      .btn-custom {
-          background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-          border: none;
-          color: white;
-          padding: 12px 30px;
-          border-radius: 50px;
-          font-weight: bold;
-          transition: all 0.3s ease;
-      }
-      .btn-custom:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-          color: white;
-      }
-    </style>
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70">
 
@@ -242,39 +185,23 @@
                 </div>
             </div>
             <div class="row">
+                <?php
+                $result_servicos = "SELECT * FROM servicos WHERE status = 'ativo' ORDER BY ordem ASC";
+                $stmt_servicos = db_query($result_servicos);
+                while ($row_servicos = db_fetch_assoc($stmt_servicos)) {
+                ?>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100 shadow-sm border-0">
                         <div class="card-body text-center">
                             <div class="mb-3">
-                                <i class="fas fa-laptop-code fa-3x text-primary"></i>
+                                <i class="fas <?php echo $row_servicos['icone']; ?> fa-3x text-primary"></i>
                             </div>
-                            <h5 class="card-title">Desenvolvimento Web</h5>
-                            <p class="card-text text-muted">Criação de sites e sistemas web modernos e responsivos com as melhores tecnologias do mercado.</p>
+                            <h5 class="card-title"><?php echo $row_servicos['titulo']; ?></h5>
+                            <p class="card-text text-muted"><?php echo $row_servicos['descricao']; ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body text-center">
-                            <div class="mb-3">
-                                <i class="fas fa-palette fa-3x text-success"></i>
-                            </div>
-                            <h5 class="card-title">Design Gráfico</h5>
-                            <p class="card-text text-muted">Criação de identidade visual e materiais gráficos que representam a essência da sua marca.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body text-center">
-                            <div class="mb-3">
-                                <i class="fas fa-bullhorn fa-3x text-info"></i>
-                            </div>
-                            <h5 class="card-title">Marketing Digital</h5>
-                            <p class="card-text text-muted">Estratégias de marketing e presença digital para aumentar sua visibilidade online.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </section>
@@ -292,25 +219,40 @@
                 <div class="col-lg-8">
                     <div class="card shadow border-0">
                         <div class="card-body p-5">
-                            <form name="CadMsgContato" action="" method="post">
+                            <?php if ($mensagem_sucesso): ?>
+                                <div class="alert alert-custom alert-success-custom">
+                                    <i class="fas fa-check-circle me-2"></i><?php echo $mensagem_sucesso; ?>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php if ($mensagem_erro): ?>
+                                <div class="alert alert-custom alert-danger-custom">
+                                    <i class="fas fa-exclamation-triangle me-2"></i><?php echo $mensagem_erro; ?>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <form name="CadMsgContato" action="processa_contato.php" method="post" onsubmit="return validarFormulario()" novalidate>
                                 <div class="row mb-4">
                                     <div class="col-md-6 mb-3">
-                                        <label for="name" class="form-label">Nome</label>
-                                        <input class="form-control" id="name" name="name" placeholder="Seu nome" type="text" required>
+                                        <label for="name" class="form-label">Nome <span class="text-danger">*</span></label>
+                                        <input class="form-control" id="name" name="name" placeholder="Seu nome completo" type="text" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="email" class="form-label">E-mail</label>
+                                        <label for="email" class="form-label">E-mail <span class="text-danger">*</span></label>
                                         <input class="form-control" id="email" name="email" placeholder="seu@email.com" type="email" required>
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="comments" class="form-label">Mensagem</label>
-                                    <textarea class="form-control" id="comments" name="comments" placeholder="Descreva seu projeto ou dúvida..." rows="5" required></textarea>
+                                    <label for="comments" class="form-label">Mensagem <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="comments" name="comments" placeholder="Descreva seu projeto ou dúvida... (mínimo 10 caracteres)" rows="5" required></textarea>
                                 </div>
                                 <div class="text-center">
-                                    <button class="btn btn-custom btn-lg" type="submit">
+                                    <button class="btn btn-custom btn-lg" type="submit" id="btnEnviar">
                                         <i class="fas fa-paper-plane me-2"></i>Enviar Mensagem
                                     </button>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <small class="text-muted"><span class="text-danger">*</span> Campos obrigatórios</small>
                                 </div>
                             </form>
                         </div>
@@ -321,33 +263,46 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
+    <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-4 mb-4">
                     <h5><i class="fas fa-rocket me-2"></i>SimplePage</h5>
-                    <p class="text-muted mb-0">Criando experiências digitais incríveis</p>
+                    <p>Transformando ideias em soluções digitais inovadoras. Criamos experiências únicas que conectam marcas e pessoas.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="text-muted mb-0">&copy; <?php echo date('Y'); ?> SimplePage. Todos os direitos reservados.</p>
+                <div class="col-lg-4 mb-4">
+                    <h5>Nossos Serviços</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#services" class="text-light"><i class="fas fa-laptop-code me-2"></i>Desenvolvimento Web</a></li>
+                        <li class="mb-2"><a href="#services" class="text-light"><i class="fas fa-palette me-2"></i>Design Gráfico</a></li>
+                        <li class="mb-2"><a href="#services" class="text-light"><i class="fas fa-bullhorn me-2"></i>Marketing Digital</a></li>
+                    </ul>
                 </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>contato@simplepage.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i>(11) 99999-9999</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>São Paulo, SP</li>
+                        <li class="mb-2"><i class="fas fa-clock me-2"></i>Seg - Sex: 9h às 18h</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <?php echo date('Y'); ?> SimplePage. Todos os direitos reservados. Desenvolvido por Robson Luiz</p>
             </div>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Scroll spy effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
+    <!-- JavaScript customizado -->
+    <script src="js/script.js"></script>
   </body>
 </html>

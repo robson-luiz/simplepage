@@ -1,0 +1,185 @@
+# Sistema SimplePage - .gitignore
+
+# ==============================================================================
+# ARQUIVOS DE ORIENTAÇÃO E DESENVOLVIMENTO
+# ==============================================================================
+
+# Arquivo de orientação do desenvolvedor (não para produção)
+README.txt
+
+# ==============================================================================
+# UPLOADS E ASSETS DINÂMICOS
+# ==============================================================================
+
+# Imagens de usuários (manter apenas estrutura de pastas)
+adm/assets/imagens/usuarios/*/
+!adm/assets/imagens/usuarios/.gitkeep
+
+# Arquivos temporários de upload
+adm/assets/imagens/temp/*
+!adm/assets/imagens/temp/.gitkeep
+
+# Cache de imagens
+*.thumb
+*.cache
+
+# ==============================================================================
+# LOGS E SESSÕES
+# ==============================================================================
+
+# Logs do sistema
+logs/
+*.log
+error.log
+access.log
+
+# Sessões PHP
+sessions/
+tmp/sessions/
+
+# ==============================================================================
+# AMBIENTE DE DESENVOLVIMENTO
+# ==============================================================================
+
+# IDEs e Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# PhpStorm
+.phpstorm.meta.php
+
+# ==============================================================================
+# DEPENDÊNCIAS E VENDOR
+# ==============================================================================
+
+# Composer
+vendor/
+composer.lock
+composer.phar
+
+# Node.js (caso seja usado futuramente)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# ==============================================================================
+# ARQUIVOS DO SISTEMA OPERACIONAL
+# ==============================================================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Linux
+*~
+.directory
+
+# ==============================================================================
+# ARQUIVOS TEMPORÁRIOS E CACHE
+# ==============================================================================
+
+# Cache do sistema
+cache/
+*.cache
+
+# Arquivos temporários
+*.tmp
+*.temp
+temp/
+
+# PHPUnit
+.phpunit.result.cache
+tests/_output/
+
+# ==============================================================================
+# ARQUIVOS DE DOCUMENTAÇÃO ANTIGA
+# ==============================================================================
+
+# README antigo (substituído por README.md)
+README.txt
+
+# Documentação de desenvolvimento
+NOTES.md
+TODO.md
+CHANGELOG.tmp
+
+# ==============================================================================
+# BACKUPS E VERSÕES
+# ==============================================================================
+
+# Backups automáticos
+*.backup
+*.bkp
+*.old
+
+# Versões antigas
+v1/
+backup/
+old/
+
+# Dumps de banco
+*.sql.gz
+*.sql.zip
+dump_*.sql
+
+# ==============================================================================
+# ARQUIVOS DE DISTRIBUIÇÃO
+# ==============================================================================
+
+# Arquivos compactados para distribuição
+*.zip
+*.tar.gz
+*.rar
+
+# Releases
+dist/
+build/
+
+# ==============================================================================
+# CONFIGURAÇÕES ESPECÍFICAS DO PROJETO
+# ==============================================================================
+
+# Configurações locais de desenvolvimento
+.env
+.env.local
+.env.production
+
+# Configurações de servidor local
+.htaccess.local
+local_config.php
+
+# ==============================================================================
+# ARQUIVOS DE TESTE
+# ==============================================================================
+
+# Dados de teste
+test_data/
+sample_images/
+dummy_content/
+
+# ==============================================================================
+# PASTAS DE DESENVOLVIMENTO E LAYOUT
+# ==============================================================================
+
+# Pastas de desenvolvimento de layout (não para produção)
+layout/
+layout_refatorado/
+
+# Arquivos de teste temporários
+test_*.php
+debug_*.php

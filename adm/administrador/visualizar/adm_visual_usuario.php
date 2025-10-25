@@ -18,8 +18,7 @@
 			<a href="administracao.php?link=4&id=<?php echo $row_usuario['id']; ?>">
 				<button type="button" class="btn btn-sm btn-warning">Editar</button>
 			</a>
-
-			<a href="administrador/processa/adm_apagar_usuario.php?id=<?php echo $row_usuario['id']; ?>">
+			<a href="#" onclick="confirmarExclusaoUsuario(<?php echo $row_usuario['id']; ?>, '<?php echo addslashes($row_usuario['nome']); ?>')">
 				<button type="button" class="btn btn-sm btn-danger">Apagar</button>
 			</a>
 		</div>
@@ -60,3 +59,39 @@
 		</dd>
 	</dl>
 </div>
+
+<!-- Modal de Confirmação para Usuários -->
+<div class="modal fade" id="modalConfirmacaoUsuario" tabindex="-1" role="dialog" style="display: none;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <i class="fas fa-exclamation-triangle text-warning"></i> Confirmar Exclusão de Usuário
+        </h4>
+        <button type="button" class="close" onclick="fecharModalUsuario()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que deseja excluir o usuário:</p>
+        <div class="alert alert-info">
+          <strong id="nomeUsuarioExcluir"></strong>
+        </div>
+        <p class="text-danger">
+          <i class="fas fa-warning"></i> <strong>Atenção:</strong> Esta ação não poderá ser desfeita e o usuário perderá acesso ao sistema.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="fecharModalUsuario()">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+        <a id="linkExcluirUsuario" href="#" class="btn btn-danger">
+          <i class="fas fa-trash"></i> Sim, Excluir
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script administrativo -->
+<script src="js/admin.js"></script>
