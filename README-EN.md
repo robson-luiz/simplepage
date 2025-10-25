@@ -31,12 +31,16 @@
 ### 📸 Screenshots
 
 #### 🌐 Public Website
-<img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/site_simplepage.png?raw=true" alt="Homepage SimplePage" width="800">
-<em>Homepage with modern and responsive design</em>
+<div align="center">
+  <img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/site_simplepage.png?raw=true" alt="Homepage SimplePage" width="800">
+  <em>Homepage with modern and responsive design</em>
+</div>
 
 #### 🖥️ Admin Panel
-<img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/adm_simplepage.png?raw=true" alt="Dashboard SimplePage" width="800">
-<em>Dashboard with modern design</em>
+<div align="center">
+  <img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/adm_simplepage.png?raw=true" alt="Dashboard SimplePage" width="800">
+  <em>Dashboard with modern design</em>
+</div>
 
 ### History
 - **2017**: Initial development of basic structure
