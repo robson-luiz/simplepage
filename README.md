@@ -157,11 +157,17 @@ Edite o arquivo `adm/conexao/conexao.php`:
 ```php
 <?php
 // Configurações do banco de dados
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'simplepage');
-define('DB_USER', 'seu_usuario');
-define('DB_PASS', 'sua_senha');
-define('DB_CHARSET', 'utf8mb4');
+$servidor = "localhost";
+$usuario = "seu_usuario";
+$senha = "sua_senha";
+$dbname = "simplepage";
+
+try {
+    $conn = new PDO("mysql:host=$servidor;dbname=$dbname;charset=utf8mb4", $usuario, $senha);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Falha na conexao: " . $e->getMessage());
+}
 ?>
 ```
 
