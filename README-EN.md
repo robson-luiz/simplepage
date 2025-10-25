@@ -31,11 +31,11 @@
 ### 📸 Screenshots
 
 #### 🌐 Public Website
-<img src="https://raw.githubusercontent.com/igormarinho/simplepage/master/screenshots/site_simplepage.png" alt="SimplePage Website" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; margin: 10px 0;" />
+<img src="https://raw.githubusercontent.com/robson-luiz/simplepage/master/screenshots/site_simplepage.png" alt="Homepage SimplePage" width="800">
 <em>Homepage with modern and responsive design</em>
 
 #### 🖥️ Admin Panel
-<img src="https://raw.githubusercontent.com/igormarinho/simplepage/master/screenshots/adm_simplepage.png" alt="SimplePage Admin Panel" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; margin: 10px 0;" />
+<img src="https://raw.githubusercontent.com/robson-luiz/simplepage/master/screenshots/adm_simplepage.png" alt="Dashboard SimplePage" width="800">
 <em>Dashboard with modern design</em>
 
 ### History
