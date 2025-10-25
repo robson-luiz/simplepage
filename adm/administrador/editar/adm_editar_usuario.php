@@ -1,10 +1,10 @@
 <?php
+	include_once('./includes/funcoes.php');
 	$id = $_GET['id'];
 	//Buscar os dados referente ao usuario situado nesse id
-	$result_usuario = "SELECT * FROM usuarios WHERE id = '$id' LIMIT 1";
-	$resultado_usuario = mysqli_query($conn, $result_usuario);
-	$row_usuario = mysqli_fetch_assoc($resultado_usuario);
-	
+	$result_usuario = "SELECT * FROM usuarios WHERE id = ? LIMIT 1";
+	$stmt_usuario = db_query($result_usuario, [$id]);
+	$row_usuario = db_fetch_assoc($stmt_usuario);
 ?>
 <div class="container theme-showcase" role="main">
   <div class="page-header">
@@ -16,76 +16,72 @@
           </a>
       </div>
   </div>
-  <form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_edita_usuario.php" enctype="multipart/form-data">
+  <form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_edita_usuario.php" enctype="multipart/form-data" id="formEditUsuario">
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Nome</label>
+	    <label class="col-sm-2 control-label">Nome <span class="text-danger">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="text" name="nome" class="form-control" id="inputEmail3" placeholder="Nome Completo" value="<?php echo $row_usuario['nome']; ?>">
+	      <input type="text" name="nome" class="form-control" id="inputNome" placeholder="Nome Completo" value="<?php echo htmlspecialchars($row_usuario['nome']); ?>" required>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">E-mail</label>
+	    <label class="col-sm-2 control-label">E-mail <span class="text-danger">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="email" name="email" class="form-control" id="inputPassword3" placeholder="E-mail" value="<?php echo $row_usuario['email']; ?>">
+	      <input type="email" name="email" class="form-control" id="inputEmail" placeholder="E-mail" value="<?php echo htmlspecialchars($row_usuario['email']); ?>" required>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Senha</label>
+	    <label class="col-sm-2 control-label">Nova Senha</label>
 	    <div class="col-sm-10">
-	      <input type="password" name="senha" class="form-control" id="inputEmail3" placeholder="Senha">
+	      <input type="password" name="senha" class="form-control" id="inputSenha" placeholder="Deixe em branco para manter a atual" minlength="6">
+	      <small class="text-muted">Deixe em branco para manter a senha atual. Mínimo de 6 caracteres se alterar.</small>
 	    </div>
 	  </div>
 	
-	  <?php $situacao_id = $row_usuario['situacoe_id']; ?>
-	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Situação</label>
-	    <div class="col-sm-10">
-	      <select class="form-control" name="select_situacao">
-	      	<option>Selecione</option>
-	      	<?php 
-	      	$result_situacao = "SELECT * FROM situacoes";
-	      	$result_situacao = mysqli_query($conn, $result_situacao);
-	      	while ($row_situacoes = mysqli_fetch_assoc($result_situacao)) {?>
-	      		<option value="<?php echo $row_situacoes['id']; ?>"<?php
-				if($situacao_id == $row_situacoes['id']){
-					echo 'selected';
-				}?>>
 
-	      		<?php echo $row_situacoes['nome']; ?></option>
-	      	<?php }?>
-	      </select>
-	    </div>
-	  </div>
-		
-	  <?php $nivel_acesso_id = $row_usuario['niveis_acesso_id']; ?>
-	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Nivel de Acesso</label>
-	    <div class="col-sm-10">
-	      <select class="form-control" name="select_nivel_acesso">
-	      	<option>Selecione</option>
-	      	<?php 
-	      	$result_niveis_acessos = "SELECT * FROM niveis_acessos";
-	      	$result_niveis_acessos = mysqli_query($conn, $result_niveis_acessos);
-	      	while ($row_niveis_acesso = mysqli_fetch_assoc($result_niveis_acessos)) {?>
-	      		<option value="<?php echo $row_niveis_acesso['id']; ?>"<?php
-				if($nivel_acesso_id == $row_niveis_acesso['id']){
-					echo 'selected';
-				}?>>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Status <span class="text-danger">*</span></label>
+			<div class="col-sm-10">
+					<select class="form-control" name="status" required>
+							<option value="ativo" <?php if($row_usuario['status'] == 'ativo') echo 'selected'; ?>>Ativo</option>
+							<option value="inativo" <?php if($row_usuario['status'] == 'inativo') echo 'selected'; ?>>Inativo</option>
+					</select>
+			</div>
+		</div>
 
-	      		<?php echo $row_niveis_acesso['nome']; ?></option>
-	      	<?php }?>
-	      </select>
-	    </div>
-	  </div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Nível de Acesso <span class="text-danger">*</span></label>
+			<div class="col-sm-10">
+					<select class="form-control" name="nivel" required>
+							<option value="admin" <?php if($row_usuario['nivel'] == 'admin') echo 'selected'; ?>>Administrador</option>
+							<option value="editor" <?php if($row_usuario['nivel'] == 'editor') echo 'selected'; ?>>Editor</option>
+					</select>
+			</div>
+		</div>
 
 	  <input type="hidden" name="id" value="<?php echo $row_usuario['id']; ?>">
+	<!-- Exibe imagem atual se existir -->
+	<?php
+		$img_path = '../../assets/imagens/usuarios/' . $row_usuario['id'] . '/' . $row_usuario['imagem'];
+		if (!empty($row_usuario['imagem']) && is_file($img_path)) {
+			echo '<div class="form-group"><div class="col-sm-offset-2 col-sm-10"><img src="' . $img_path . '" alt="Foto do usuário" style="max-width:120px;max-height:120px;margin-bottom:10px;"></div></div>';
+		}
+	?>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Nova Imagem</label>
+		<div class="col-sm-10">
+			<input type="file" name="imagem" accept="image/*" class="form-control">
+			<p class="help-block">Selecione uma nova imagem para substituir a atual.</p>
+		</div>
+	</div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
 	      <button type="submit" class="btn btn-warning">Alterar</button>
 	    </div>
 	  </div>
 	</form>
+	
+	<p class="text-muted mt-3"><span class="text-danger">*</span> Campos obrigatórios</p>
 </div>

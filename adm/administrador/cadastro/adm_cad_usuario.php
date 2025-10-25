@@ -7,63 +7,66 @@
           <a href="administracao.php?link=2"><button type="button" class="btn btn-sm btn-success">Listar</button></a>
       </div>
   </div>
-  <form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_cad_usuario.php" enctype="multipart/form-data">
+  <form class="form-horizontal" method="POST" action="administrador/processa/adm_proc_cad_usuario.php" enctype="multipart/form-data" id="formCadUsuario">
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Nome</label>
+	    <label class="col-sm-2 control-label">Nome <span class="text-danger">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="text" name="nome" class="form-control" id="inputEmail3" placeholder="Nome Completo">
+	      <input type="text" name="nome" class="form-control" id="inputNome" placeholder="Nome Completo" required>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">E-mail</label>
+	    <label class="col-sm-2 control-label">E-mail <span class="text-danger">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="email" name="email" class="form-control" id="inputPassword3" placeholder="E-mail">
+	      <input type="email" name="email" class="form-control" id="inputEmail" placeholder="E-mail" required>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Senha</label>
+	    <label class="col-sm-2 control-label">Senha <span class="text-danger">*</span></label>
 	    <div class="col-sm-10">
-	      <input type="password" name="senha" class="form-control" id="inputEmail3" placeholder="Senha">
+	      <input type="password" name="senha" class="form-control" id="inputSenha" placeholder="Senha" required minlength="6">
+	      <small class="text-muted">Mínimo de 6 caracteres</small>
 	    </div>
 	  </div>
 
-	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Situação</label>
-	    <div class="col-sm-10">
-	      <select class="form-control" name="select_situacao">
-	      	<option>Selecione</option>
-	      	<?php 
-	      	$result_situacao = "SELECT * FROM situacoes";
-	      	$result_situacao = mysqli_query($conn, $result_situacao);
-	      	while ($row_situacoes = mysqli_fetch_assoc($result_situacao)) {?>
-	      		<option value="<?php echo $row_situacoes['id']; ?>"><?php echo $row_situacoes['nome']; ?></option>
-	      	<?php }?>
-	      </select>
-	    </div>
-	  </div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Status <span class="text-danger">*</span></label>
+			<div class="col-sm-10">
+					<select class="form-control" name="status" required>
+							<option value="">Selecione o status</option>
+							<option value="ativo">Ativo</option>
+							<option value="inativo">Inativo</option>
+					</select>
+			</div>
+		</div>
 
-	  <div class="form-group">
-	    <label class="col-sm-2 control-label">Nivel de Acesso</label>
-	    <div class="col-sm-10">
-	      <select class="form-control" name="select_nivel_acesso">
-	      	<option>Selecione</option>
-	      	<?php 
-	      	$result_niveis_acessos = "SELECT * FROM niveis_acessos";
-	      	$result_niveis_acessos = mysqli_query($conn, $result_niveis_acessos);
-	      	while ($row_niveis_acessos = mysqli_fetch_assoc($result_niveis_acessos)) {?>
-	      		<option value="<?php echo $row_niveis_acessos['id']; ?>"><?php echo $row_niveis_acessos['nome']; ?></option>
-	      	<?php }?>
-	      </select>
-	    </div>
-	  </div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Nível de Acesso <span class="text-danger">*</span></label>
+			<div class="col-sm-10">
+					<select class="form-control" name="nivel" required>
+							<option value="">Selecione o nível</option>
+							<option value="admin">Administrador</option>
+							<option value="editor">Editor</option>
+					</select>
+			</div>
+		</div>
 
-	  <div class="form-group">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Imagem</label>
+				<div class="col-sm-10">
+					<input type="file" name="imagem" class="form-control" accept="image/*">
+					<small class="text-muted">Campo opcional. Formatos aceitos: JPG, PNG, GIF</small>
+				</div>
+			</div>
+
+	  <div class="form-group mt-3">
 	    <div class="col-sm-offset-2 col-sm-10">
 	      <button type="submit" class="btn btn-primary">Cadastrar</button>
 	    </div>
 	  </div>
 	</form>
-</div>
+	
+	<p class="text-muted mt-3"><span class="text-danger">*</span> Campos obrigatórios</p>
+ </div>

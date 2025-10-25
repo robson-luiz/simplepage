@@ -1,0 +1,330 @@
+/* ==========================================
+   VARIÁVEIS CSS
+   ========================================== */
+:root {
+    --primary-color: #1e88e5;
+    --secondary-color: #009688;
+    --dark-blue: #001256;
+    --gray-blue: #778899;
+}
+
+/* ==========================================
+   ESTILOS GERAIS
+   ========================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================
+   NAVBAR
+   ========================================== */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color), #1565c0);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(30, 136, 229, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: white !important;
+}
+
+.nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+/* ==========================================
+   SECTIONS
+   ========================================== */
+.section {
+    min-height: 100vh;
+    padding: 80px 0;
+    display: flex;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+/* ==========================================
+   HOME SECTION
+   ========================================== */
+#home {
+    background: linear-gradient(135deg, var(--primary-color), #1565c0);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+#home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+    background-size: cover;
+    opacity: 0.3;
+}
+
+.home-content {
+    position: relative;
+    z-index: 1;
+}
+
+.home-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* ==========================================
+   ABOUT SECTION
+   ========================================== */
+#about {
+    background: linear-gradient(135deg, var(--secondary-color), #00796b);
+    color: white;
+}
+
+/* Cartão opcional de destaque */
+.about-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ==========================================
+   SERVICES SECTION
+   ========================================== */
+#services {
+    background: linear-gradient(135deg, var(--dark-blue), #0d47a1);
+    color: white;
+}
+
+.service-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.4);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #64b5f6;
+}
+
+/* ==========================================
+   CONTACT SECTION
+   ========================================== */
+#contact {
+    background: linear-gradient(135deg, var(--gray-blue), #546e7a);
+    color: white;
+}
+
+.contact-form {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.form-control, .form-control:focus {
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #333;
+}
+
+.form-control::placeholder {
+    color: #666;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
+    border: none;
+    padding: 12px 40px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+    background: #000;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* ==========================================
+   AJUSTES DE RESPONSIVIDADE E POSICIONAMENTO
+   ========================================== */
+
+/* Imagens responsivas e com bordas arredondadas */
+.home-image,
+.about-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    object-fit: cover;
+}
+
+/* Containers de imagem com espaçamento adequado */
+.home-image-container,
+.about-image-container {
+    overflow: hidden;
+}
+
+/* Ajusta layout da seção Sobre */
+#about .row {
+    align-items: center;
+}
+
+/* Garante que o texto e imagem fiquem lado a lado corretamente */
+.about-content {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.3); /* leve contraste se a imagem for muito clara */
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* Em telas pequenas, empilha imagem e texto */
+@media (max-width: 992px) {
+    #about .col-lg-6 {
+        text-align: center;
+    }
+
+    .about-content {
+        background: transparent;
+        padding: 10px 0;
+    }
+
+    .about-image {
+        margin-bottom: 20px;
+    }
+}
+
+/* Garante responsividade adicional */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section {
+        min-height: auto;
+        padding: 60px 0;
+    }
+
+    .home-icon {
+        font-size: 3rem;
+    }
+
+    .service-icon {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .home-image,
+    .about-image {
+        border-radius: 8px;
+    }
+}
+

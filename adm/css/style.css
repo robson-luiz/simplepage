@@ -16,3 +16,233 @@ body {
 .theme-showcase .navbar .container {
   width: auto;
 }
+
+/* Modal de Confirmação - Estilos Customizados */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+
+.modal.show {
+    display: block !important;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.5;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+    max-width: 500px;
+    margin: 1.75rem auto;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0.3rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.5);
+    outline: 0;
+}
+
+/* ====================================
+   RESPONSIVIDADE ADMINISTRATIVA
+   ==================================== */
+
+/* Tabelas responsivas */
+@media (max-width: 991.98px) {
+    .table-responsive {
+        border: none;
+    }
+    
+    .table th,
+    .table td {
+        padding: 8px 5px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-xs,
+    .btn-sm {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+        margin: 2px;
+    }
+}
+
+/* Dispositivos móveis */
+@media (max-width: 767.98px) {
+    body {
+        padding-top: 60px;
+    }
+    
+    .page-header h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    
+    /* Tabelas empilhadas em mobile */
+    .table thead {
+        display: none;
+    }
+    
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .table tr {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        background: #f9f9f9;
+    }
+    
+    .table td {
+        text-align: right !important;
+        padding: 5px 10px;
+        border: none;
+        position: relative;
+        padding-left: 40% !important;
+    }
+    
+    .table td:before {
+        content: attr(data-label) ": ";
+        position: absolute;
+        left: 6px;
+        width: 35%;
+        text-align: left;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    /* Formulários responsivos */
+    .form-horizontal .control-label {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+    
+    .form-horizontal .form-group {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .col-sm-2,
+    .col-sm-10,
+    .col-sm-offset-2 {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .form-control {
+        font-size: 16px; /* Evita zoom no iOS */
+        margin-bottom: 10px;
+    }
+    
+    /* Botões responsivos */
+    .btn {
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+    }
+    
+    .pull-right {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+}
+
+/* Dispositivos muito pequenos */
+@media (max-width: 575.98px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .page-header {
+        padding: 10px 0;
+    }
+    
+    .page-header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .btn-xs {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        width: auto;
+        margin: 2px;
+    }
+    
+    /* Modal responsivo */
+    .modal-dialog {
+        margin: 10px;
+        max-width: calc(100% - 20px);
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .modal-footer {
+        padding: 10px 15px;
+    }
+    
+    .modal-footer .btn {
+        width: 48%;
+        margin: 1%;
+    }
+}
+
+/* Ajustes específicos para TinyMCE */
+@media (max-width: 767.98px) {
+    .mce-tinymce {
+        max-width: 100% !important;
+    }
+    
+    .mce-toolbar-grp {
+        flex-wrap: wrap;
+    }
+}
+
+/* Melhorias gerais de UX */
+@media (hover: none) and (pointer: coarse) {
+    /* Dispositivos touch */
+    .btn:hover {
+        transform: none;
+    }
+    
+    .table td,
+    .table th {
+        padding: 12px 8px;
+    }
+}

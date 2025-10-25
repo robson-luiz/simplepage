@@ -2,7 +2,7 @@
   session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,8 +23,8 @@
 
       <form class="form-signin" method="POST" action="valida.php">
         <h2 class="form-signin-heading">Área Restrita</h2>
-        <label for="inputEmail" class="sr-only">Usuário</label>
-        <input type="email" name="txt_usuario" id="inputEmail" class="form-control" placeholder="Usuário" required autofocus>
+        <label for="inputUsuario" class="sr-only">Usuário</label>
+        <input type="text" name="txt_usuario" id="inputUsuario" class="form-control" placeholder="Usuário ou E-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Senha</label>
         <input type="password" name="txt_senha" id="inputPassword" class="form-control" placeholder="Senha" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
