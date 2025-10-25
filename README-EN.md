@@ -35,7 +35,7 @@
 <em>Homepage with modern and responsive design</em>
 
 #### 🖥️ Admin Panel
-![Dashbaord](screenshots/site_simplepage.png)
+![Dashbaord](screenshots/adm_simplepage.png)
 <em>Dashboard with modern design</em>
 
 ### History
