@@ -40,8 +40,8 @@
 #### 🖥️ Admin Panel
 <div align="center">
   <img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/adm_simplepage.png?raw=true" alt="Dashboard SimplePage" width="800">
-  <em>Dashboard with modern design</em>
   <br>
+  <em>Dashboard with modern design</em>  
 </div>
 
 ### History
