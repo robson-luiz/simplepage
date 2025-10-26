@@ -32,14 +32,14 @@ O **SimplePage** é um sistema de gestão de conteúdo (CMS) desenvolvido origin
 
 #### 🌐 Site Público
 <div align="center">
-  <img src="https://imgur.com/4jSGmHr" alt="Homepage SimplePage" width="800">
+  <img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/site_simplepage.png?raw=true" alt="Homepage SimplePage" width="800">
   <br>
   <em>Página inicial com design moderno e responsivo</em>
 </div>
 
 #### 🖥️ Painel Administrativo
 <div align="center">
-  <img src="https://imgur.com/OyoBIKV" alt="Dashboard SimplePage" width="800">
+  <img src="https://github.com/robson-luiz/simplepage/blob/master/screenshots/adm_simplepage.png?raw=true" alt="Dashboard SimplePage" width="800">
   <br>
   <em>Dashboard com design moderno</em>
 </div>
