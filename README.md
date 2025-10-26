@@ -1,4 +1,4 @@
-# SimplePage - Sistema de Gestão de Conteúdo
+# SimplePage - Site com sistema administrativo
 
 [🇺🇸 English](README-EN.md)
 
@@ -7,7 +7,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
 
-> Sistema completo de gerenciamento de conteúdo desenvolvido em PHP puro com painel administrativo responsivo e site institucional moderno.
+> Projeto desenvolvido em PHP puro com painel administrativo responsivo e site institucional moderno.
 
 ## 📋 Índice
 
@@ -26,7 +26,7 @@
 
 ## 🎯 Sobre o Projeto
 
-O **SimplePage** é um sistema de gestão de conteúdo (CMS) desenvolvido originalmente em 2017 e completamente refatorado em 2025. O projeto oferece uma solução completa para criação e gerenciamento de sites institucionais, com foco na simplicidade de uso e administração eficiente.
+O **SimplePage** é um site com sistema adminsitrativo (CMS) para fazer gestão de conteúdo desenvolvido originalmente em 2017 e completamente refatorado em 2025. O projeto oferece uma solução completa para criação e gerenciamento de sites institucionais, com foco na simplicidade de uso e administração eficiente.
 
 ### 📸 Screenshots
 

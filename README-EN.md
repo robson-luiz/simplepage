@@ -1,4 +1,4 @@
-# SimplePage - Content Management System
+# SimplePage - Website with Administrative System
 
 [🇧🇷 Português](README.md)
 
@@ -7,7 +7,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
 
-> Complete content management system built with pure PHP featuring a responsive admin panel and modern institutional website.
+> Project built with pure PHP featuring a responsive admin panel and modern institutional website.
 
 ## 📋 Table of Contents
 
@@ -26,7 +26,7 @@
 
 ## 🎯 About the Project
 
-**SimplePage** is a content management system (CMS) originally developed in 2017 and completely refactored in 2025. The project offers a complete solution for creating and managing institutional websites, focusing on ease of use and efficient administration.
+**SimplePage** is a website with administrative system (CMS) originally developed in 2017 and completely refactored in 2025. The project offers a complete solution for creating and managing institutional websites, focusing on ease of use and efficient administration.
 
 ### 📸 Screenshots
 
